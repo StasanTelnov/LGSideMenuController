@@ -308,11 +308,13 @@ rightViewBackgroundImageFinalScale = _rightViewBackgroundImageFinalScale;
 #pragma mark - Static defaults
 
 - (void)setupDefaultProperties {
+    self.rootViewSwipedMargin = 44.0;
+    
     CGFloat sideMenuWidth = 320.0;
-
+    
     if (LGSideMenuHelper.isPhone) {
         CGFloat minSide = MIN(CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds));
-        sideMenuWidth = minSide - 44.0;
+        sideMenuWidth = minSide - self.rootViewSwipedMargin;
     }
 
     // Needed to be initialized before default properties (setupDefaults)
@@ -1070,6 +1072,22 @@ rightViewBackgroundImageFinalScale = _rightViewBackgroundImageFinalScale;
     _rightViewAlwaysVisibleOptions = rightViewAlwaysVisibleOptions;
 
     [self setNeedsUpdateLayoutsAndStyles];
+}
+
+-(void)setRootViewSwipedMargin:(CGFloat)rootViewSwipedMargin {
+    if (_rootViewSwipedMargin == rootViewSwipedMargin) return;
+    
+    _rootViewSwipedMargin = rootViewSwipedMargin;
+    
+    CGFloat sideMenuWidth = 320.0;
+    
+    if (LGSideMenuHelper.isPhone) {
+        CGFloat minSide = MIN(CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds));
+        sideMenuWidth = minSide - self.rootViewSwipedMargin;
+    }
+    
+    self.leftViewWidth = sideMenuWidth;
+    self.rightViewWidth = sideMenuWidth;
 }
 
 - (void)setLeftViewWidth:(CGFloat)leftViewWidth {

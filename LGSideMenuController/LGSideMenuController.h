@@ -132,15 +132,18 @@ LGSideMenuSwipeGestureRange LGSideMenuSwipeGestureRangeMake(CGFloat left, CGFloa
 
 #pragma mark - Static defaults
 
+/** Default is 44.0 */
+@property (assign, nonatomic) IBInspectable CGFloat rootViewSwipedMargin;
+
 /**
  Default:
- if (iPhone) then MainScreen.size.min - 44.0
+ if (iPhone) then MainScreen.size.min - self.rootViewSwipedMargin
  else 320.0
  */
 @property (assign, nonatomic) IBInspectable CGFloat leftViewWidth;
 /**
  Default:
- if (iPhone) then MainScreen.size.min - 44.0
+ if (iPhone) then MainScreen.size.min - self.rootViewSwipedMargin
  else 320.0
  */
 @property (assign, nonatomic) IBInspectable CGFloat rightViewWidth;
